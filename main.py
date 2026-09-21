@@ -46,3 +46,5 @@ def update_numbers(numbers: NumberInput):
 @app.delete("/delete" ,response_model=DeleteResult, status_code=status.HTTP_200_OK)
 def delete_numbers(numbers: NumberInput):
     return DeleteResult(message=f"Deleted numbers: a={numbers.a}, b={numbers.b}")
+
+    
