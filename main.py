@@ -3,7 +3,9 @@ from fastapi import FastAPI
 from routes.root import router as root_router
 from routes.general import router as general_router
 from routes.math import router as math_router
+from routes.items import router as items_router
 from fastapi.middleware.cors import CORSMiddleware
+from database import create_db
 
 #pydantic models for request and respones bodies
 # class NumberInput(BaseModel):
@@ -38,6 +40,8 @@ app = FastAPI(
 
 )
 
+create_db()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -49,6 +53,7 @@ app.add_middleware(
 app.include_router(root_router)
 app.include_router(general_router)
 app.include_router(math_router)
+app.include_router(items_router)
 
 
 # @app.get("/" , status_code=status.HTTP_200_OK , tags=["Root"])
