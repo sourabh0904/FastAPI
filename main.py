@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from routes.root import router as root_router
 from routes.general import router as general_router
 from routes.math import router as math_router
+from fastapi.middleware.cors import CORSMiddleware
 
 #pydantic models for request and respones bodies
 # class NumberInput(BaseModel):
@@ -20,7 +21,7 @@ from routes.math import router as math_router
 #     message: str
 
 app = FastAPI(
-    title="MY API" , 
+    title="MY API (FastAPI)" , 
     openapi_tags=[{
         "name" : "Root" , 
         "description" : "Root endpoint for the API"
@@ -35,6 +36,13 @@ app = FastAPI(
     }
     ]
 
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # app = FastAPI()
