@@ -1,15 +1,20 @@
 name : CI - Run Tests
 
 on:
+    push:
+        branches: [main]
     pull_request:
         branches: [main]
 
 jobs:
     test:
+        name: ${{matrix.python-version}}
         runs-on: ubuntu-latest
-
+        strategy:
+          matrix:
+            python-version: ['3.11', '3.12', '3.13']
         env: 
-            API_KEY: my-secret-key-12345
+            API_KEY: ${{secrets.API_KEY}}
             DATABASE_URL: sqlite:///./test.db
 
         steps:
