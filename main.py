@@ -37,7 +37,6 @@ app = FastAPI(
         "description" : "General endpoints"
     }
     ]
-
 )
 
 create_db()
